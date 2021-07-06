@@ -4,7 +4,8 @@
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "commit": "git-cz"
   },
   "lint-staged": {
     "*.{vue,js,ts}": "eslint --fix"
@@ -12,8 +13,11 @@
   "dependencies": {
     "-": "^0.0.1",
     "axios": "^0.21.1",
+    "cz-conventional-changelog-zh": "^0.0.2",
+    "dayjs": "^1.10.5",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "lodash-es": "^4.17.21",
     "vue": "^3.0.5",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"
@@ -37,11 +41,12 @@
     "lint-staged": "^11.0.0",
     "typescript": "^4.3.2",
     "vite": "^2.3.8",
+    "vite-plugin-mock": "^2.8.0",
     "vue-tsc": "^0.0.24"
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-customizable"
+      "path": "./node_modules/cz-conventional-changelog"
     }
   }
 }

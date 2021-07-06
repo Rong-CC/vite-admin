@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 16:38:10
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-07-02 17:04:50
+ * @LastEditTime: 2021-07-05 15:02:23
  */
 
 module.exports = {
@@ -80,7 +80,7 @@ module.exports = {
   allowBreakingChanges: ['feat', 'fix'],
 
   // 跳过要询问的步骤
-  // skipQuestions: ['body', 'footer'],
+  skipQuestions: ['body', 'footer'],
 
   // subject 限制长度
   subjectLimit: 100

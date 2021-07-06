@@ -1,5 +1,12 @@
+###
+ # @Description:
+ # @Author: rongcheng
+ # @@后台人员: xxx
+ # @Date: 2021-07-02 16:39:24
+ # @LastEditors: rongcheng
+ # @LastEditTime: 2021-07-06 18:10:59
+###
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npx --no-install commitlint --edit 
-npx --no-install commitlint --edit 
+npx --no-install commitlint --edit
