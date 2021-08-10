@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 16:59:37
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-07-02 17:50:39
+ * @LastEditTime: 2021-08-05 17:47:57
  */
 module.exports = {
   env: {
@@ -36,6 +36,10 @@ module.exports = {
     'import/no-absolute-path': 'off',
     'import/no-extraneous-dependencies': 'off',
     'vue/no-multiple-template-root': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off',
     'no-param-reassign': [
       'error',
       {

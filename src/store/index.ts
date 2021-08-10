@@ -2,35 +2,19 @@
  * @Description:
  * @Author: rongcheng
  * @@后台人员: xxx
- * @Date: 2021-07-02 15:40:51
+ * @Date: 2021-07-02 17:38:39
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-07-02 17:41:28
+ * @LastEditTime: 2021-08-05 17:32:04
  */
 import { createStore } from 'vuex'
+import app from './modules/app'
+import permission from './modules/permission'
+import getters from './getters'
 
-const defaultState = {
-  count: 0
-}
-
-// Create a new store instance.
 export default createStore({
-  state() {
-    return defaultState
-  },
-  mutations: {
-    increment(state: typeof defaultState) {
-      // eslint-disable-next-line no-param-reassign
-      state.count += 1
-    }
-  },
-  actions: {
-    increment(context: any) {
-      context.commit('increment')
-    }
-  },
-  getters: {
-    double(state: typeof defaultState) {
-      return 2 * state.count
-    }
+  getters,
+  modules: {
+    app,
+    permission
   }
 })

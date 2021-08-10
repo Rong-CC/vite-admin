@@ -15,9 +15,13 @@
     "axios": "^0.21.1",
     "cz-conventional-changelog-zh": "^0.0.2",
     "dayjs": "^1.10.5",
+    "element-plus": "^1.0.2-beta.69",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "less": "^4.1.1",
+    "less-loader": "^10.0.1",
     "lodash-es": "^4.17.21",
+    "screenfull": "^5.1.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.10",
     "vuex": "^4.0.2"
