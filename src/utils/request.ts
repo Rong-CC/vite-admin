@@ -4,10 +4,12 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:45:36
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-07-02 17:07:06
+ * @LastEditTime: 2021-12-17 14:40:34
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 // import router from '../router'
+// type requestType = {}
+// interface Response<T extends requestType> {}
 // 创建axios实例
 const service = axios.create({
   // 在请求地址前面加上baseURL
