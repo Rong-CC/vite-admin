@@ -4,21 +4,21 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:36:08
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-12-31 14:25:30
+ * @LastEditTime: 2021-12-31 14:39:30
  */
-// import { routes } from '@/router/index'
+import { routes } from '@/router/index.ts'
 
-// const state = {
-//   routes
-// }
+const state = {
+  routes
+}
 
-// const mutations = {}
+const mutations = {}
 
-// const actions = {}
+const actions = {}
 
-// export default {
-//   namespaced: true,
-//   state,
-//   mutations,
-//   actions
-// }
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}
