@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 16:59:37
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 17:47:57
+ * @LastEditTime: 2021-12-31 14:55:48
  */
 module.exports = {
   env: {
@@ -29,8 +29,17 @@ module.exports = {
     parser: '@typescript-eslint/parser',
     sourceType: 'module'
   },
+  overrides: [
+    {
+      files: ['**/*.spec.js', '**/*.spec.jsx'],
+      env: {
+        jest: true
+      }
+    }
+  ],
   plugins: ['vue', '@typescript-eslint'],
   rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-absolute-path': 'off',

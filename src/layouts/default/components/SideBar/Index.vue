@@ -4,15 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:42:36
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 17:42:37
--->
-<!--
- * @Description:
- * @Author: rongcheng
- * @@后台人员: xxx
- * @Date: 2021-08-05 17:20:49
- * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 17:21:06
+ * @LastEditTime: 2021-12-31 15:15:41
 -->
 <template>
   <div class="sidebar-container has-logo">
@@ -40,15 +32,15 @@
 <script lang="ts">
 import { defineComponent, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { useStore } from 'vuex'
+import { useStore, mapGetters } from 'vuex'
 import SidebarItem from './SideBarItem.vue'
 import Logo from './Logo.vue'
 
 export default defineComponent({
   components: { Logo, SidebarItem },
-  // computed: {
-  // 	...mapGetters(['sidebar', 'routes'])
-  // },
+  computed: {
+    ...mapGetters(['sidebar', 'routes'])
+  },
   setup() {
     const store = useStore()
     const route = useRoute()
@@ -61,9 +53,16 @@ export default defineComponent({
     })
     const isCollapse = computed(() => !store.getters.sidebar.opened)
     // console.log(mapState(['permission']), 'mapState');
-    const routes = computed(
-      () => store.getters.routes.find((item: any) => item.path === '/').children
-    )
+    // const routes = computed(
+    // () => store.getters.routes.find((item: any) => item.path === '/').children
+    // )
+    const routes = [
+      {
+        name: '张三',
+        path: '/'
+      }
+    ]
+    console.log(routes, '22')
     // const r = computed(() => mapGetters(['routes']));
     const handleOpen = () => {
       // to do

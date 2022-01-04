@@ -4,18 +4,18 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-12-31 14:18:25
+ * @LastEditTime: 2021-12-31 15:11:17
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Mian from '../layouts/default/index.vue'
 
 export const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'Home',
-    redirect: '/List',
-    component: Mian
-  },
+  // {
+  //   path: '/',
+  //   name: 'Home',
+  //   redirect: '/List',
+  //   component: Mian
+  // },
   {
     path: '/List',
     name: 'List',
