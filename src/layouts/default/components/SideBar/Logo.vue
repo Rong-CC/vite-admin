@@ -1,10 +1,10 @@
 <!--
- * @Description:
+ * @Description: 头部 logo
  * @Author: rongcheng
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:22:10
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 18:00:26
+ * @LastEditTime: 2022-01-05 15:51:22
 -->
 <template>
   <router-link :to="{ path: '/' }">

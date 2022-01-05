@@ -4,28 +4,85 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-12-31 15:11:17
+ * @LastEditTime: 2022-01-05 16:13:29
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Mian from '../layouts/default/index.vue'
 
+export const LAYOUT = () => import('@/layouts/default/BlankLayout.vue')
 export const routes: Array<RouteRecordRaw> = [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   redirect: '/List',
-  //   component: Mian
-  // },
   {
-    path: '/List',
+    path: '/',
+    name: 'Home',
+    // redirect: '/List',
+    meta: {
+      title: '首页',
+      hideMenu: false
+      // hideChildrenInMenu: false
+    },
+    component: Mian,
+    children: []
+  },
+  {
+    path: '/virtual',
+    name: 'Virtual',
+    // redirect: '/List',
+    meta: {
+      title: '虚拟列表',
+      hideMenu: false
+      // hideChildrenInMenu: false
+    },
+    component: Mian,
+    children: []
+  },
+  {
+    path: '/list',
     name: 'List',
     component: Mian,
-    redirect: '/List/index',
+    // redirect: '/List/index',
+    meta: {
+      title: '列表'
+    },
     children: [
       {
         path: 'index',
-        name: 'Index',
+        name: 'Index', // name
+        meta: {
+          title: '列表菜单1' // 菜单名字
+          // hideChildrenInMenu: false 隐藏子节点
+          // hideMenu: true // 菜单隐藏
+        },
         component: () => import('../views/home/index.vue')
+      },
+      {
+        path: 'upload',
+        name: 'Upload', // name
+        meta: {
+          title: '列表菜单上传' // 菜单名字
+          // hideChildrenInMenu: false 隐藏子节点
+          // hideMenu: true // 菜单隐藏
+        },
+        component: () => import('../views/demo/detail/index.vue')
+      },
+      {
+        path: 'form',
+        name: 'Form',
+        meta: {
+          title: '列表菜单2',
+          hideMenu: false // 菜单隐藏
+        },
+        component: LAYOUT,
+        children: [
+          {
+            path: 'form-1',
+            name: 'Form-1',
+            meta: {
+              title: '列表菜单2-1',
+              hideMenu: false // 菜单隐藏
+            },
+            component: () => import('../views/userForm/index.vue')
+          }
+        ]
       }
     ]
   }

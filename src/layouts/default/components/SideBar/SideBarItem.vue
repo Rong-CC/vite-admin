@@ -1,35 +1,30 @@
 <!--
- * @Description:
+ * @Description: 菜单item
  * @Author: rongcheng
  * @@后台人员: xxx
- * @Date: 2021-08-05 17:21:26
+ * @Date: 2022-01-05 15:45:36
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 17:21:27
+ * @LastEditTime: 2022-01-05 15:50:54
 -->
 <template>
-  <div v-if="!item.hidden" class="menu-wrapper">
-    <template
-      v-if="
-        hasOneShowingChild(item.children, item) &&
-        !onlyOneChild.children &&
-        onlyOneChild.noShowingChildren &&
-        !item.alwaysShow
-      "
-    >
-      <el-menu-item
-        :index="resolvePath(onlyOneChild.path)"
-        :class="{ 'submenu-title-noDropdown': !isNest }"
-      >
-        <i :class="[onlyOneChild.meta.icon || (item.meta && item.meta.icon), 'icon']"></i>
+  <div class="menu-wrapper">
+    <template v-if="!menuHasChildren(item) && getShowMenu">
+      <el-menu-item :index="resolvePath('')" :class="{ 'submenu-title-noDropdown': !isNest }">
+        <i :class="[item.meta.icon || (item.meta && item.meta.icon), 'icon']"></i>
         <template #title
-          ><span>{{ onlyOneChild.meta.title }}</span></template
+          ><span>{{ item.meta.title }}</span></template
         >
       </el-menu-item>
     </template>
-    <el-submenu v-else ref="subMenu" :index="resolvePath(item.path)">
+
+    <el-submenu
+      v-if="menuHasChildren(item) && getShowMenu"
+      ref="subMenu"
+      :index="resolvePath(item.path)"
+    >
       <template v-slot:title>
         <i :class="[item.meta && item.meta.icon, 'icon']"></i>
-        <span>{{ item.meta.title }}</span>
+        <span>{{ item.meta.title }}11</span>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -38,14 +33,16 @@
         :item="child"
         :base-path="resolvePath(child.path)"
         class="nest-menu"
-      />
+      >
+      </sidebar-item>
     </el-submenu>
   </div>
 </template>
 
 <script lang="ts">
-import { toRefs, reactive, defineComponent } from 'vue'
-import path from 'path'
+import { toRefs, reactive, defineComponent, computed } from 'vue'
+import path from '@/utils/path.ts'
+import type { Menu } from '@/router/types'
 
 export default defineComponent({
   name: 'SidebarItem',
@@ -67,6 +64,17 @@ export default defineComponent({
     const state = reactive({
       onlyOneChild: { children: null, path: '', meta: { icon: '', title: '' } }
     })
+    const getShowMenu = computed(() => !props.item?.meta?.hideMenu)
+    // const getI18nName = computed(() => t(props.item?.name)) // 英文转换
+    const getIcon = computed(() => props.item?.meta?.icon)
+    function menuHasChildren(menuTreeItem: Menu): boolean {
+      return (
+        !menuTreeItem.meta?.hideChildrenInMenu &&
+        Reflect.has(menuTreeItem, 'children') &&
+        !!menuTreeItem.children &&
+        menuTreeItem.children.length > 0
+      )
+    }
     const hasOneShowingChild = (children = [], parent: any) => {
       const showingChildren = children.filter((item: any) => {
         if (item.hidden) {
@@ -85,9 +93,13 @@ export default defineComponent({
       return false
     }
     const resolvePath = (routePath: any) => {
+      // console.log(props.basePath, T, '-----props.basePath')
       return path.resolve(props.basePath, routePath)
     }
     return {
+      getShowMenu,
+      getIcon,
+      menuHasChildren,
       hasOneShowingChild,
       resolvePath,
       ...toRefs(state)

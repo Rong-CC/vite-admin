@@ -4,12 +4,12 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:06:32
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 17:07:22
+ * @LastEditTime: 2022-01-05 16:03:12
 -->
 <template>
   <section class="app-main">
     <div class="main-wrapper">
-      <router-view v-slot="{ Component }">
+      <router-view v-slot="{ Component }" :key="key">
         <transition name="router-fade" mode="out-in">
           <keep-alive>
             <component :is="Component" />
