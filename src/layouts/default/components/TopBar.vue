@@ -4,21 +4,27 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:08:24
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-10 15:26:42
+ * @LastEditTime: 2022-01-06 13:48:45
 -->
 <template>
   <div class="top-bar">
     <div class="collapse" @click="toggleSideBar">
+      <el-icon :size="22">
+        <Fold v-if="!isCollapse" />
+        <Expand v-else />
+      </el-icon>
       <i :class="['el-icon-s-unfold', 'hamburger', !isCollapse ? 'is-active' : '']"></i>
     </div>
     <div class="collapse" @click="reload">
-      <i class="el-icon-refresh refresh"></i>
+      <el-icon :size="22">
+        <Refresh />
+      </el-icon>
+      <!-- <i class="el-icon-refresh refresh"></i> -->
     </div>
     <div class="user-info">
       <el-dropdown>
         <span class="el-dropdown-link">
-          <span style="font-size: 16px; font-weight: 500">admin</span
-          ><i class="el-icon-arrow-down el-icon--right"></i>
+          <span style="font-size: 16px; font-weight: 500">admin</span>
         </span>
         <template #dropdown>
           <el-dropdown-menu>
@@ -37,7 +43,9 @@
         </ul>
         <template #reference>
           <el-badge :value="2" class="item">
-            <i class="el-icon-bell"></i>
+            <el-icon>
+              <Bell></Bell>
+            </el-icon>
           </el-badge>
         </template>
       </el-popover>
@@ -51,10 +59,17 @@
 <script lang="ts">
 import { defineComponent, ref, computed, SetupContext } from 'vue'
 // import { ElMessage } from 'element-plus'
+import { Fold, Expand, Refresh, Bell } from '@element-plus/icons'
 import screenfull, { Screenfull } from 'screenfull'
 import { useStore } from 'vuex'
 
 export default defineComponent({
+  components: {
+    Fold,
+    Expand,
+    Refresh,
+    Bell
+  },
   setup(props: any, context: SetupContext) {
     const store = useStore()
     // const isCollapse = ref<boolean>(store.getters.sidebar)

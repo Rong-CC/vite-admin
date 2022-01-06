@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-05 16:13:29
+ * @LastEditTime: 2022-01-06 14:03:45
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import Mian from '../layouts/default/index.vue'
@@ -17,7 +17,8 @@ export const routes: Array<RouteRecordRaw> = [
     // redirect: '/List',
     meta: {
       title: '首页',
-      hideMenu: false
+      hideMenu: false,
+      icon: 'el-icon-s-unfold'
       // hideChildrenInMenu: false
     },
     component: Mian,
@@ -29,7 +30,8 @@ export const routes: Array<RouteRecordRaw> = [
     // redirect: '/List',
     meta: {
       title: '虚拟列表',
-      hideMenu: false
+      hideMenu: false,
+      icon: 'el-icon-s-unfold'
       // hideChildrenInMenu: false
     },
     component: Mian,
@@ -41,7 +43,8 @@ export const routes: Array<RouteRecordRaw> = [
     component: Mian,
     // redirect: '/List/index',
     meta: {
-      title: '列表'
+      title: '列表',
+      icon: 'el-icon-s-unfold'
     },
     children: [
       {
@@ -49,6 +52,7 @@ export const routes: Array<RouteRecordRaw> = [
         name: 'Index', // name
         meta: {
           title: '列表菜单1' // 菜单名字
+          // icon: 'el-icon-s-unfold'
           // hideChildrenInMenu: false 隐藏子节点
           // hideMenu: true // 菜单隐藏
         },
@@ -71,18 +75,19 @@ export const routes: Array<RouteRecordRaw> = [
           title: '列表菜单2',
           hideMenu: false // 菜单隐藏
         },
-        component: LAYOUT,
-        children: [
-          {
-            path: 'form-1',
-            name: 'Form-1',
-            meta: {
-              title: '列表菜单2-1',
-              hideMenu: false // 菜单隐藏
-            },
-            component: () => import('../views/userForm/index.vue')
-          }
-        ]
+        component: LAYOUT
+        // children: [
+        //   {
+        //     path: 'form-1',
+        //     name: 'Form-1',
+        //     meta: {
+        //       title: '列表菜单2-1',
+        //       // icon: 'el-icon-s-unfold',
+        //       hideMenu: false // 菜单隐藏
+        //     },
+        //     component: () => import('../views/userForm/index.vue')
+        //   }
+        // ]
       }
     ]
   }

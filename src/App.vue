@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 17:38:39
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 16:53:25
+ * @LastEditTime: 2022-01-06 16:20:39
 -->
 <template>
   <router-view></router-view>
@@ -17,3 +17,8 @@ export default defineComponent({
   name: 'App'
 })
 </script>
+//
+<style lang="less">
+// @import './style/inedex.less';
+//
+</style>

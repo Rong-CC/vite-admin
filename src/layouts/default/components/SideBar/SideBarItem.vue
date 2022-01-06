@@ -4,48 +4,60 @@
  * @@后台人员: xxx
  * @Date: 2022-01-05 15:45:36
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-05 15:50:54
+ * @LastEditTime: 2022-01-06 15:50:35
 -->
 <template>
   <div class="menu-wrapper">
     <template v-if="!menuHasChildren(item) && getShowMenu">
-      <el-menu-item :index="resolvePath('')" :class="{ 'submenu-title-noDropdown': !isNest }">
-        <i :class="[item.meta.icon || (item.meta && item.meta.icon), 'icon']"></i>
-        <template #title
-          ><span>{{ item.meta.title }}</span></template
-        >
+      <el-menu-item :index="resolvePath(item.path, 1)">
+        <el-icon :size="16">
+          <Postcard />
+        </el-icon>
+        <template #title>
+          <!-- <i :class="[item.meta.icon || (item.meta && item.meta.icon)]"></i> -->
+          <span>{{ item.meta.title }}</span>
+        </template>
       </el-menu-item>
     </template>
 
-    <el-submenu
+    <el-sub-menu
       v-if="menuHasChildren(item) && getShowMenu"
-      ref="subMenu"
       :index="resolvePath(item.path)"
+      :class="{ 'submenu-title-noDropdown': !isNest }"
     >
-      <template v-slot:title>
-        <i :class="[item.meta && item.meta.icon, 'icon']"></i>
-        <span>{{ item.meta.title }}11</span>
+      <template #title>
+        <el-icon :size="16">
+          <myMenu />
+        </el-icon>
+        <span>{{ item.meta.title }}</span>
       </template>
-      <sidebar-item
-        v-for="child in item.children"
-        :key="child.path"
-        :is-nest="true"
-        :item="child"
-        :base-path="resolvePath(child.path)"
-        class="nest-menu"
-      >
-      </sidebar-item>
-    </el-submenu>
+      <el-menu-item-group>
+        <sidebar-item
+          v-for="child in item.children"
+          :key="child.path"
+          :is-nest="true"
+          :item="child"
+          :base-path="resolvePath(child.path)"
+          class="nest-menu"
+        >
+        </sidebar-item>
+      </el-menu-item-group>
+    </el-sub-menu>
   </div>
 </template>
 
 <script lang="ts">
 import { toRefs, reactive, defineComponent, computed } from 'vue'
+import { Menu as myMenu, Postcard } from '@element-plus/icons'
 import path from '@/utils/path.ts'
 import type { Menu } from '@/router/types'
 
 export default defineComponent({
   name: 'SidebarItem',
+  components: {
+    myMenu,
+    Postcard
+  },
   props: {
     item: {
       type: Object,
@@ -58,6 +70,10 @@ export default defineComponent({
     basePath: {
       type: String,
       default: ''
+    },
+    collapse: {
+      type: Boolean,
+      default: false
     }
   },
   setup(props) {
@@ -92,7 +108,10 @@ export default defineComponent({
       }
       return false
     }
-    const resolvePath = (routePath: any) => {
+    const resolvePath = (routePath: any, t?) => {
+      if (t) {
+        return path.resolve(props.basePath)
+      }
       // console.log(props.basePath, T, '-----props.basePath')
       return path.resolve(props.basePath, routePath)
     }
@@ -108,10 +127,15 @@ export default defineComponent({
 })
 </script>
 
-<style lang="less" scoped>
-.icon {
-  // margin-bottom: 3px;
-  display: inline-block;
-  vertical-align: top;
+<style lang="less" scoped></style>
+<style lang="less">
+/*隐藏文字*/
+.el-menu--collapse .menu-wrapper .el-sub-menu .el-sub-menu__title span {
+  display: none;
+}
+
+/*隐藏 > */
+.el-menu--collapse .menu-wrapper .el-sub-menu .el-sub-menu__icon-arrow {
+  display: none;
 }
 </style>
