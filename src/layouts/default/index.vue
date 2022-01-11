@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:05:23
  * @LastEditors: rongcheng
- * @LastEditTime: 2021-08-05 17:42:13
+ * @LastEditTime: 2022-01-11 09:56:54
 -->
 
 <template>
@@ -19,6 +19,7 @@
         </el-header>
         <el-main>
           <breadcrumb />
+          <Tabs></Tabs>
           <div v-if="isRouterAlive">
             <app-main />
           </div>
@@ -33,17 +34,20 @@
 
 <script lang="ts">
 import { defineComponent, computed, ref, nextTick } from 'vue'
-import { useStore } from 'vuex'
-import Sidebar from './components/SideBar/Index.vue'
+// import { useStore } from 'vuex'
+import { useAppStore } from '@/store/modules/app.ts'
+import Sidebar from '@/layouts/default/components/SideBar/Index.vue'
 import Topbar from './components/TopBar.vue'
-import Breadcrumb from './components/Breadcrumb.vue'
-import AppMain from './components/app-main.vue'
+import Breadcrumb from '@/layouts/default/components/Breadcrumb.vue'
+import AppMain from '@/layouts/default/components/app-main.vue'
+import Tabs from './components/Tabs/page.vue'
 
 export default defineComponent({
-  components: { Sidebar, Topbar, Breadcrumb, AppMain },
+  components: { Sidebar, Topbar, Breadcrumb, AppMain, Tabs },
   setup() {
-    const store = useStore()
-    const isCollapse = computed(() => !store.state.app.sidebar.opened)
+    const store = useAppStore()
+    console.log(store.$state)
+    const isCollapse = computed(() => !store.$state.sidebar.opened)
     const isRouterAlive = ref<boolean>(true)
     const handleReload = () => {
       isRouterAlive.value = false

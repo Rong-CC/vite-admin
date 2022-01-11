@@ -21,6 +21,7 @@
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
     "lodash-es": "^4.17.21",
+    "pinia": "^2.0.9",
     "screenfull": "^5.1.0",
     "vue": "3.2",
     "vue-router": "^4.0.10",

@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2022-01-05 15:45:36
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-06 15:50:35
+ * @LastEditTime: 2022-01-11 10:52:07
 -->
 <template>
   <div class="menu-wrapper">
@@ -15,7 +15,7 @@
         </el-icon>
         <template #title>
           <!-- <i :class="[item.meta.icon || (item.meta && item.meta.icon)]"></i> -->
-          <span>{{ item.meta.title }}</span>
+          <span>{{ item.meta?.title }}</span>
         </template>
       </el-menu-item>
     </template>
@@ -29,7 +29,7 @@
         <el-icon :size="16">
           <myMenu />
         </el-icon>
-        <span>{{ item.meta.title }}</span>
+        <span>{{ item.meta?.title }}</span>
       </template>
       <el-menu-item-group>
         <sidebar-item
@@ -47,10 +47,11 @@
 </template>
 
 <script lang="ts">
-import { toRefs, reactive, defineComponent, computed } from 'vue'
+import { toRefs, reactive, defineComponent, computed, PropType } from 'vue'
 import { Menu as myMenu, Postcard } from '@element-plus/icons'
 import path from '@/utils/path.ts'
-import type { Menu } from '@/router/types'
+// import { Menu as MenuType } from '@/router/types'
+import { Menu } from '../../../../router/types'
 
 export default defineComponent({
   name: 'SidebarItem',
@@ -60,7 +61,7 @@ export default defineComponent({
   },
   props: {
     item: {
-      type: Object,
+      type: Object as PropType<Menu>,
       required: true
     },
     isNest: {

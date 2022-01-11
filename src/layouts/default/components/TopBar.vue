@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:08:24
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-06 13:48:45
+ * @LastEditTime: 2022-01-11 10:17:25
 -->
 <template>
   <div class="top-bar">
@@ -51,7 +51,10 @@
       </el-popover>
     </div>
     <div class="full-screen" @click="handleFullScreen">
-      <span :class="fullscreen ? 'hero-full-screen-zoom' : 'hero-full-screen'"></span>
+      <el-icon>
+        <FullScreen></FullScreen>
+      </el-icon>
+      <!-- <span :class="fullscreen ? 'hero-full-screen-zoom' : 'hero-full-screen'"></span> -->
     </div>
   </div>
 </template>
@@ -59,38 +62,50 @@
 <script lang="ts">
 import { defineComponent, ref, computed, SetupContext } from 'vue'
 // import { ElMessage } from 'element-plus'
-import { Fold, Expand, Refresh, Bell } from '@element-plus/icons'
+import { Fold, Expand, Refresh, Bell, FullScreen } from '@element-plus/icons'
 import screenfull, { Screenfull } from 'screenfull'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
+import { useAppStore } from '@/store/modules/app.ts'
 
 export default defineComponent({
   components: {
     Fold,
     Expand,
     Refresh,
-    Bell
+    Bell,
+    FullScreen
   },
   setup(props: any, context: SetupContext) {
-    const store = useStore()
+    const store = useAppStore()
     // const isCollapse = ref<boolean>(store.getters.sidebar)
-    const isCollapse = computed(() => !store.state.app.sidebar.opened)
+    // computed(() => !store.state.app.sidebar.opened)
+    const isCollapse = computed(() => !store.$state.sidebar.opened)
+
     const fullscreen = ref<boolean>(false)
     const change = () => {
       fullscreen.value = (screenfull as Screenfull).isFullscreen
     }
     const toggleSideBar = () => store.dispatch('app/toggleSideBar')
     // 全屏事件
-    const handleFullScreen = () => {
-      // if (!screenfull.isEnabled) {
-      //   // 如果不允许进入全屏，发出不允许提示
-      //   ElMessage({
-      //     message: '暂不不支持全屏',
-      //     type: 'warning'
-      //   })
-      //   return false
-      // }
-      // screenfull.toggle()
+    const handleFullScreen = (): Boolean => {
+      if (!screenfull.isEnabled) {
+        return false
+      }
+      screenfull.toggle()
+      return true
     }
+
+    // const handleFullScreen = () => {
+    //   if (!screenfull.isEnabled) {
+    //     // 如果不允许进入全屏，发出不允许提示
+    //     // ElMessage({
+    //     //   message: '暂不不支持全屏',
+    //     //   type: 'warning'
+    //     // })
+    //     return false
+    //   }
+    //   screenfull.toggle()
+    // }
     if (screenfull.isEnabled) {
       screenfull.on('change', change)
     }
