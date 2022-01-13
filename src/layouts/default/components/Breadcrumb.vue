@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:07:55
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-10 14:02:02
+ * @LastEditTime: 2022-01-11 16:50:07
 -->
 <template>
   <div>
@@ -61,8 +61,8 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .breadcrumb {
-  height: 40px;
-  line-height: 40px;
+  height: 30px;
+  line-height: 30px;
   padding-left: 20px;
 }
 /deep/ .el-breadcrumb__inner a,

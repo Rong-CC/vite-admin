@@ -4,12 +4,21 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-06 14:03:45
+ * @LastEditTime: 2022-01-12 17:45:08
  */
+
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { setRouteChange } from '@/logics/mitt/routeChange'
 import Mian from '../layouts/default/index.vue'
 
 export const LAYOUT = () => import('@/layouts/default/BlankLayout.vue')
+// name: string;
+// meta: RouteMeta;
+// component?: Component | string;
+// components?: Component;
+// children?: AppRouteRecordRaw[];
+// props?: Recordable;
+// fullPath?: string;
 export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -21,8 +30,8 @@ export const routes: Array<RouteRecordRaw> = [
       icon: 'el-icon-s-unfold'
       // hideChildrenInMenu: false
     },
-    component: Mian,
-    children: []
+    component: Mian
+    // children: []
   },
   {
     path: '/virtual',
@@ -34,8 +43,8 @@ export const routes: Array<RouteRecordRaw> = [
       icon: 'el-icon-s-unfold'
       // hideChildrenInMenu: false
     },
-    component: Mian,
-    children: []
+    component: Mian
+    // children: []
   },
   {
     path: '/list',
@@ -75,19 +84,22 @@ export const routes: Array<RouteRecordRaw> = [
           title: '列表菜单2',
           hideMenu: false // 菜单隐藏
         },
-        component: LAYOUT
-        // children: [
-        //   {
-        //     path: 'form-1',
-        //     name: 'Form-1',
-        //     meta: {
-        //       title: '列表菜单2-1',
-        //       // icon: 'el-icon-s-unfold',
-        //       hideMenu: false // 菜单隐藏
-        //     },
-        //     component: () => import('../views/userForm/index.vue')
-        //   }
-        // ]
+        component: LAYOUT,
+        children: [
+          {
+            path: 'form-1',
+            name: 'Form-1',
+            meta: {
+              // condition: currentActiveMenu && hideTab  显示currentActiveMenu的tabs
+              currentActiveMenu: '/list/form', // 显示父级菜单
+              hideTab: true, // 隐藏 tabs
+              title: '列表菜单2-1',
+              // icon: 'el-icon-s-unfold',
+              hideMenu: false // 菜单隐藏
+            },
+            component: () => import('../views/userForm/index.vue')
+          }
+        ]
       }
     ]
   }
@@ -96,6 +108,15 @@ export const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach(async (to) => {
+  // The page has already been loaded, it will be faster to open it again, you don’t need to do loading and other processing
+  // to.meta.loaded = !!loadedPageMap.get(to.path);
+  // Notify routing changes
+  setRouteChange(to)
+
+  return true
 })
 
 export default router

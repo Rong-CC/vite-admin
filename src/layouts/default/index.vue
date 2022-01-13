@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:05:23
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-11 09:56:54
+ * @LastEditTime: 2022-01-11 16:50:26
 -->
 
 <template>
@@ -18,8 +18,8 @@
           <topbar @reload="handleReload" />
         </el-header>
         <el-main>
-          <breadcrumb />
           <Tabs></Tabs>
+          <breadcrumb />
           <div v-if="isRouterAlive">
             <app-main />
           </div>
@@ -37,7 +37,7 @@ import { defineComponent, computed, ref, nextTick } from 'vue'
 // import { useStore } from 'vuex'
 import { useAppStore } from '@/store/modules/app.ts'
 import Sidebar from '@/layouts/default/components/SideBar/Index.vue'
-import Topbar from './components/TopBar.vue'
+import Topbar from './components/top-bar.vue'
 import Breadcrumb from '@/layouts/default/components/Breadcrumb.vue'
 import AppMain from '@/layouts/default/components/app-main.vue'
 import Tabs from './components/Tabs/page.vue'

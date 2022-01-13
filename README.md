@@ -6,6 +6,8 @@
 npm install
 # or
 yarn add
+# or
+pnpm install
 ```
 
 ### 启动项目
@@ -43,3 +45,12 @@ npm run build
 ├── vite.config.ts                 // Vite 配置文件
 └── package.json
 ```
+
+### 项目依赖
+
+Vue3.2 + Element-Plus+Pinia+Vite 项目
+
+推荐使用 pnpm 包管理依赖
+
+使用Pinia 代替 Vuex
+

@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-08-05 17:08:24
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-11 10:17:25
+ * @LastEditTime: 2022-01-11 16:48:33
 -->
 <template>
   <div class="top-bar">
@@ -62,6 +62,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed, SetupContext } from 'vue'
 // import { ElMessage } from 'element-plus'
+
 import { Fold, Expand, Refresh, Bell, FullScreen } from '@element-plus/icons'
 import screenfull, { Screenfull } from 'screenfull'
 // import { useStore } from 'vuex'
@@ -85,7 +86,7 @@ export default defineComponent({
     const change = () => {
       fullscreen.value = (screenfull as Screenfull).isFullscreen
     }
-    const toggleSideBar = () => store.dispatch('app/toggleSideBar')
+    const toggleSideBar = () => store.setSidebar()
     // 全屏事件
     const handleFullScreen = (): Boolean => {
       if (!screenfull.isEnabled) {

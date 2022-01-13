@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 16:59:37
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-10 14:24:16
+ * @LastEditTime: 2022-01-12 17:12:25
  */
 module.exports = {
   env: {
@@ -52,7 +52,12 @@ module.exports = {
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/member-delimiter-style': 'off',
     'no-unused-vars': 'off',
+    'no-continue': 'off',
+    'no-restricted-syntax': 0,
+    'vue/no-v-for-template-key': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
+    'no-unused-expressions': ['error', { allowShortCircuit: true }],
+    'consistent-return': ['error', { treatUndefinedAsUnspecified: false }],
     'no-param-reassign': [
       'error',
       {
