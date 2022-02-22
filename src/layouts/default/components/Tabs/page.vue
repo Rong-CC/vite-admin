@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2022-01-11 09:56:41
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-12 17:45:33
+ * @LastEditTime: 2022-02-22 13:58:31
 -->
 <template>
   <el-tabs
@@ -68,7 +68,7 @@ export default defineComponent({
       // console.log(meta, '22')
       const isHide = !hideTab ? null : currentActiveMenu
       const p = isHide || fullPath || path
-      console.log(p, '11111')
+      // console.log(p, '11111')
       if (activeKeyRef.value !== p) {
         activeKeyRef.value = p as string
       }

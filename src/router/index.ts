@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-12 17:45:08
+ * @LastEditTime: 2022-02-22 15:18:25
  */
 
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
@@ -33,18 +33,59 @@ export const routes: Array<RouteRecordRaw> = [
     component: Mian
     // children: []
   },
+  // {
+  //   path: '/virtual',
+  //   name: 'Virtual',
+  //   // redirect: '/List',
+  //   meta: {
+  //     title: '虚拟列表',
+  //     hideMenu: false,
+  //     icon: 'el-icon-s-unfold'
+  //     // hideChildrenInMenu: false
+  //   },
+  //   component: Mian
+  //   // children: []
+  // },
   {
-    path: '/virtual',
-    name: 'Virtual',
+    path: '/components',
+    name: 'Components',
     // redirect: '/List',
     meta: {
-      title: '虚拟列表',
-      hideMenu: false,
+      title: '组件',
+      // hideMenu: false,
       icon: 'el-icon-s-unfold'
       // hideChildrenInMenu: false
     },
-    component: Mian
-    // children: []
+    component: Mian,
+    children: [
+      {
+        path: 'table',
+        name: 'Table', // name
+        meta: {
+          title: '表格' // 菜单名字
+          // icon: 'el-icon-s-unfold'
+          // hideChildrenInMenu: false 隐藏子节点
+          // hideMenu: true // 菜单隐藏
+        },
+        component: LAYOUT,
+        redirect: 'table-1',
+        children: [
+          {
+            path: 'table-1',
+            name: 'table-1',
+            meta: {
+              // condition: currentActiveMenu && hideTab  显示currentActiveMenu的tabs
+              currentActiveMenu: '/components/table', // 显示父级菜单
+              hideTab: true, // 隐藏 tabs
+              title: '基础表格',
+              // icon: 'el-icon-s-unfold',
+              hideMenu: false // 菜单隐藏
+            },
+            component: () => import('@/components/c_table/example/table.vue')
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/list',
@@ -58,7 +99,7 @@ export const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: 'index',
-        name: 'Index', // name
+        name: 'index', // name
         meta: {
           title: '列表菜单1' // 菜单名字
           // icon: 'el-icon-s-unfold'

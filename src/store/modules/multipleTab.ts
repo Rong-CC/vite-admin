@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2022-01-10 14:54:05
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-13 09:18:49
+ * @LastEditTime: 2022-02-22 13:58:25
  */
 import type { RouteLocationNormalized, RouteLocationRaw, Router } from 'vue-router'
 import { defineStore } from 'pinia'
@@ -118,11 +118,11 @@ export const useMultipleStore = defineStore({
       path !== toPath && go(toPath as PageEnum, true)
     },
     async addTab(route: RouteLocationNormalized) {
-      console.log(route, '-------name')
+      // console.log(route, '-------name')
       const { path, name, fullPath, params, query, meta } = getRawRoute(route)
       // console.log(name, 'name')
 
-      console.log(name, [REDIRECT_ROUTE.name, PAGE_NOT_FOUND_ROUTE.name], '22')
+      // console.log(name, [REDIRECT_ROUTE.name, PAGE_NOT_FOUND_ROUTE.name], '22')
 
       // // 404  The page does not need to add a tab
       //  || [REDIRECT_ROUTE.name, PAGE_NOT_FOUND_ROUTE.name].includes(name as string)
