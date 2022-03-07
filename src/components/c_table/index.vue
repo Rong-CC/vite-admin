@@ -4,43 +4,53 @@
  * @@后台人员: xxx
  * @Date: 2022-02-22 10:06:59
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-02-22 17:47:03
+ * @LastEditTime: 2022-03-07 17:59:08
 -->
 <script setup lang="ts">
 import { defineProps, PropType, withDefaults, watch } from 'vue'
-import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
+// import type { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults'
+import { treeType, columnType } from './index'
 
-type formatter = (x: any, y: TableColumnCtx<any>) => number
-type filterMethod = (x: number, y: number) => number
-interface columnType {
-  prop: string // value 值
-  label: string // 标题文字值
-  sortable?: boolean // 排序
-  headerSlot?: string // header插槽
-  slot?: string // 插槽
-  type?: string // type类型
-  minWidth?: string | number // 最小宽度
-  fixed?: string // 固定位置
-  align?: string // 对齐方式
-  columnKey?: string
-  filters?: object
-  formatter?: formatter
-  filterMethod?: filterMethod
-}
+/** *
+ *  height   表格高度
+ *  size     表格尺寸大小
+ *  stripe    开启表格斑马线     true ｜ false
+ *  border    开启线条          true ｜ false
+ *  loading   开启loading       true ｜ false
+ *  treeObject  tree配置参数     参数看 treeType
+ *  column      表格列           参数看 columnType
+ *  data        表格数据
+ */
 interface Props {
   height?: string | PropType<string> | null
   size?: string | PropType<string>
   stripe?: boolean | PropType<boolean>
   border?: boolean | PropType<boolean>
   loading: boolean | PropType<boolean>
+  treeObject?: treeType | PropType<unknown> | any
   column: columnType[]
   data: any[]
 }
+
 const props = withDefaults(defineProps<Props>(), {
   height: null,
   border: false,
   stripe: false,
   loading: true,
+  treeObject: () => {
+    return {
+      defaultExpandAll: false,
+      lazy: false,
+      rowKey: '',
+      load: (row) => {
+        console.log(row)
+      },
+      treeProps: {
+        hasChildren: 'hasChildren',
+        children: 'children'
+      }
+    }
+  },
   column: () => [],
   data: () => []
 })
@@ -71,6 +81,11 @@ const sortChange = () => {}
       :height="props.height"
       :stripe="props.stripe"
       :size="props.size"
+      :default-expand-all="props.treeObject?.defaultExpandAll"
+      :rowKey="props.treeObject?.rowKey"
+      :lazy="props.treeObject.lazy"
+      :treeProps="props.treeObject.treeProps"
+      :load="props.treeObject.load"
       @current-change="currentChange"
       @selection-change="selectionChange"
       @select-all="selectAll"
@@ -81,7 +96,7 @@ const sortChange = () => {}
           <!-- 头部插槽 -->
           <template v-if="item.headerSlot" #header="scope">
             <slot
-              :name="item.slot"
+              :name="item.headerSlot"
               :row="scope.row"
               :index="scope.$index"
               :column="scope.column"

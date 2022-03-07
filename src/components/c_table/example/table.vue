@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2022-02-22 11:08:14
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-02-22 18:11:38
+ * @LastEditTime: 2022-03-07 13:45:30
 -->
 <template>
   <p>基础表格</p>
@@ -30,7 +30,8 @@
     :stripe="isStripe"
     :border="isBorder"
     :loading="isLoading"
-  ></c-table>
+  >
+  </c-table>
 </template>
 
 <script lang="ts">

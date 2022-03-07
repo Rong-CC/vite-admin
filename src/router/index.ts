@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-02-22 15:18:25
+ * @LastEditTime: 2022-03-07 14:48:55
  */
 
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
@@ -82,6 +82,32 @@ export const routes: Array<RouteRecordRaw> = [
               hideMenu: false // 菜单隐藏
             },
             component: () => import('@/components/c_table/example/table.vue')
+          },
+          {
+            path: 'table-2',
+            name: 'table-2',
+            meta: {
+              // condition: currentActiveMenu && hideTab  显示currentActiveMenu的tabs
+              currentActiveMenu: '/components/table', // 显示父级菜单
+              hideTab: true, // 隐藏 tabs
+              title: '插槽表格',
+              // icon: 'el-icon-s-unfold',
+              hideMenu: false // 菜单隐藏
+            },
+            component: () => import('@/components/c_table/example/slotTable.vue')
+          },
+          {
+            path: 'table-3',
+            name: 'table-4',
+            meta: {
+              // condition: currentActiveMenu && hideTab  显示currentActiveMenu的tabs
+              currentActiveMenu: '/components/table', // 显示父级菜单
+              hideTab: true, // 隐藏 tabs
+              title: '树形表格',
+              // icon: 'el-icon-s-unfold',
+              hideMenu: false // 菜单隐藏
+            },
+            component: () => import('@/components/c_table/example/treeTable.vue')
           }
         ]
       }
