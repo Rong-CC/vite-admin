@@ -4,11 +4,17 @@
  * @@后台人员: xxx
  * @Date: 2022-03-07 10:39:21
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-03-07 14:14:21
+ * @LastEditTime: 2022-03-10 17:23:00
 -->
 <template>
   <div>自定义slot 和自定义头部插槽</div>
-  <c-table :data="tableData" :loading="false" :height="height" :column="column">
+  <c-table
+    :data="tableData"
+    :loading="false"
+    :height="height"
+    :column="column"
+    :page-object="pageObject"
+  >
     <template #headerName="scope">
       <span>{{ scope.column.property }}</span>
       <el-tooltip class="box-item" effect="dark" content="自定义表头" placement="left-start">
@@ -30,7 +36,7 @@
       </el-tooltip>
     </template>
     <template #date="{ row }">
-      <el-tag class="ml-2" type="info">{{ row.date }}</el-tag>
+      <el-tag class="ml-2" type="success">{{ row.date }}</el-tag>
     </template>
   </c-table>
 </template>
@@ -44,6 +50,12 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({
+      pageObject: {
+        show: false,
+        total: 0,
+        pageNum: 1,
+        size: 10
+      },
       tableData: [
         {
           date: '2016-05-03',
@@ -84,6 +96,7 @@ export default defineComponent({
         }
       ]
     })
+    state.pageObject.total = state.tableData.length
     return {
       ...toRefs(state)
     }

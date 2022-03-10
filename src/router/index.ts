@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-03-07 14:48:55
+ * @LastEditTime: 2022-03-08 15:10:05
  */
 
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
@@ -110,6 +110,16 @@ export const routes: Array<RouteRecordRaw> = [
             component: () => import('@/components/c_table/example/treeTable.vue')
           }
         ]
+      },
+      {
+        path: '/file',
+        name: 'File',
+        component: Mian,
+        // redirect: '/List/index',
+        meta: {
+          title: '文件',
+          icon: 'el-icon-s-unfold'
+        }
       }
     ]
   },

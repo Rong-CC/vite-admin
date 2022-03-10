@@ -4,13 +4,14 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 16:59:37
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-12 17:12:25
+ * @LastEditTime: 2022-03-08 18:08:33
  */
 module.exports = {
   env: {
     browser: true,
     es2021: true,
     node: true
+    // 'vue/setup-compiler-macros': true
   },
   settings: {
     'import/resolver': {
@@ -18,6 +19,11 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx']
       }
     }
+  },
+  globals: {
+    defineProps: 'readonly',
+    defineEmits: 'readonly',
+    defineExpose: 'readonly'
   },
   extends: [
     'plugin:vue/essential',
@@ -40,6 +46,7 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warning' : 'off',
+    'vue/no-v-model-argument': 'off',
     'import/no-unresolved': 'off',
     'import/extensions': 'off',
     'import/no-absolute-path': 'off',
