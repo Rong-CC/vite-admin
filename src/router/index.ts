@@ -4,7 +4,7 @@
  * @@后台人员: xxx
  * @Date: 2021-07-02 15:34:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-03-08 15:10:05
+ * @LastEditTime: 2022-07-17 13:23:01
  */
 
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
@@ -114,7 +114,9 @@ export const routes: Array<RouteRecordRaw> = [
       {
         path: '/file',
         name: 'File',
-        component: Mian,
+        component: () => import('@/views/demo/upload/index.vue'),
+        // component: LAYOUT,
+        // component: Mian,
         // redirect: '/List/index',
         meta: {
           title: '文件',
@@ -174,7 +176,7 @@ export const routes: Array<RouteRecordRaw> = [
               // icon: 'el-icon-s-unfold',
               hideMenu: false // 菜单隐藏
             },
-            component: () => import('../views/userForm/index.vue')
+            component: () => import('../views/userForm/index')
           }
         ]
       }

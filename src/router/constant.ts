@@ -2,10 +2,12 @@
  * @Description:
  * @Author: rongcheng
  * @@后台人员: xxx
- * @Date: 2022-01-11 10:55:44
+ * @Date: 2022-05-30 13:53:17
  * @LastEditors: rongcheng
- * @LastEditTime: 2022-01-12 18:08:48
+ * @LastEditTime: 2022-06-05 14:40:18
  */
+
+// 重定向
 export const REDIRECT_NAME = 'Redirect'
 
 export const PARENT_LAYOUT_NAME = 'ParentLayout'
